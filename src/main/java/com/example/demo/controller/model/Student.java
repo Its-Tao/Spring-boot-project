@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 
@@ -12,18 +15,33 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private int id;
-    private String name;
-    private String email;
-    private String course;
 
-    public Student(int id, String name, String email, String course) {
+    @NotBlank(message = "Name is required")
+    private String name;
+
+    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email is required")
+    private String email;
+    
+
+
+    @ManyToOne
+    private Course course;
+
+    // No argument constructor
+    public Student() {
+    }
+
+    // constructor 
+
+    public Student(int id, String name, String email, Course course) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.course = course;
     }
+    // getter and setter methodes
 
     public int getId() {
         return id;
@@ -49,11 +67,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getCourse() {
+    public Course getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
 }
