@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Course;
 import com.example.demo.repository.CourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,12 @@ import java.util.List;
 @Service
 public class CourseService {
 
-    private final CourseRepository courseRepository;
+    @Autowired
+    private  CourseRepository courseRepository;
 
-    public CourseService(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
-    }
+   // public CourseService(CourseRepository courseRepository) {
+    //    this.courseRepository = courseRepository;
+   // }
 
     // Create course
     public Course createCourse(Course course) {
@@ -38,6 +40,8 @@ public class CourseService {
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
         course.setName(updatedCourse.getName());
+        course.setLecturer(updatedCourse.getLecturer());
+
 
         return courseRepository.save(course);
     }
