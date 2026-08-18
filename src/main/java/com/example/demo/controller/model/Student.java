@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 
