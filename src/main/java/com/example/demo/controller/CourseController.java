@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/courses")
+
 public class CourseController {
 
     private final CourseService courseService;
@@ -17,13 +17,13 @@ public class CourseController {
     }
 
     // Create course
-    @PostMapping
+    @PostMapping("/add-course")
     public Course createCourse(@RequestBody Course course) {
         return courseService.createCourse(course);
     }
 
     // Get all courses
-    @GetMapping
+    @GetMapping("/course")
     public List<Course> getAllCourses() {
         return courseService.getAllCourses();
     }
